@@ -14,6 +14,6 @@ function component() {
 
     element.appendChild(myLogo);
 
-    return elkement;
+    return element;
 }
 document.body.appendChild(component());

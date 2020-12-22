@@ -1,4 +1,5 @@
-.hello {
-    color: red;
-    background: url("./logo.png");
+canvas {
+    display: block;
+    margin: 50px auto;
+    background-color: whitesmoke;
 }

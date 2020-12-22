@@ -6,39 +6,23 @@ class MyCanvas extends React.Component {
     constructor(props) {
         super(props);
         this.canvas = React.createRef();
-        // this.handleClick = this.handleClick.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
-        this.onMouseUp = this.onMouseUp.bind(this);
     }
-
-    // handleClick() {
-    //     const canvas = this.canvas.current;
-    //     const ctx = canvas.getContext('2d');
-    //     ctx.strokeStyle = "#7c8b8c";
-    //     ctx.line(90, 130, 320, 210);
-    // }
 
     onMouseDown = (e) => {
         const canvas = this.canvas.current;
         const ctx = canvas.getContext('2d');
+        ctx.fillStyle = "#66ccff";
         console.log('mouse down');
         console.log('x:' + (e.clientX - canvas.offsetLeft) + 'y:' + (e.clientY - canvas.offsetTop));
-    }
-
-    onMouseUp = (e) => {
-        const canvas = this.canvas.current;
-        const ctx = canvas.getContext('2d');
-        console.log('mouse up');
-        console.log('x:' + (e.clientX - canvas.offsetLeft) + 'y:' + (e.clientY - canvas.offsetTop));
-    }
-
-    line(x, y, x1, y1) {
-        this.save();
-        this.beginPath();
-        this.moveTo(x, y);
-        this.lineTo(x1, y1);
-        this.stroke();
-        this.restore();
+        onmousemove = function (e) {
+            console.log('x:' + (e.clientX - canvas.offsetLeft) + 'y:' + (e.clientY - canvas.offsetTop));
+        }
+        onmouseup = function (e) {
+            console.log('mouse up');
+            console.log('x:' + (e.clientX - canvas.offsetLeft) + 'y:' + (e.clientY - canvas.offsetTop));
+            onmousedown = onmousemove = null;
+        }
     }
 
     componentDidMount() {
@@ -57,12 +41,11 @@ class MyCanvas extends React.Component {
 
     }
 
-
     render() {
         return (
             <canvas
                 height="600px" width="800px" ref={this.canvas}
-                onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
+                onMouseDown={this.onMouseDown}>
             </canvas>
         );
     }

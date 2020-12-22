@@ -6,46 +6,34 @@ class MyCanvas extends React.Component {
     constructor(props) {
         super(props);
         this.canvas = React.createRef();
-        this.onMouseDown = this.onMouseDown.bind(this);
+        this.handleMouseDown = this.handleMouseDown.bind(this);
     }
 
-    onMouseDown = (e) => {
+    handleMouseDown = (e) => {
         const canvas = this.canvas.current;
         const ctx = canvas.getContext('2d');
-        ctx.fillStyle = "#66ccff";
-        console.log('mouse down');
-        console.log('x:' + (e.clientX - canvas.offsetLeft) + 'y:' + (e.clientY - canvas.offsetTop));
+        ctx.strokeStyle = "#66ccff";
+        ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - e.clientY - canvas.offsetTop);
+        ctx.beginPath();
         onmousemove = function (e) {
-            console.log('x:' + (e.clientX - canvas.offsetLeft) + 'y:' + (e.clientY - canvas.offsetTop));
+            ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+            ctx.stroke();
         }
-        onmouseup = function (e) {
-            console.log('mouse up');
-            console.log('x:' + (e.clientX - canvas.offsetLeft) + 'y:' + (e.clientY - canvas.offsetTop));
+        onmouseup = function () {
             onmousedown = onmousemove = null;
         }
     }
 
     componentDidMount() {
-        const canvas = this.canvas.current;
-        const ctx = canvas.getContext('2d');
-        (function () {
-            Object.getPrototypeOf(ctx).line = function (x, y, x1, y1) {
-                this.save();
-                this.beginPath();
-                this.moveTo(x, y);
-                this.lineTo(x1, y1);
-                this.stroke();
-                this.restore();
-            }
-        })();
-
+        // const canvas = this.canvas.current;
+        // const ctx = canvas.getContext('2d');
     }
 
     render() {
         return (
             <canvas
                 height="600px" width="800px" ref={this.canvas}
-                onMouseDown={this.onMouseDown}>
+                onMouseDown={this.handleMouseDown}>
             </canvas>
         );
     }

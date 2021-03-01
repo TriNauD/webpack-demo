@@ -31,24 +31,6 @@ module.exports = {
     },
     devServer: {
         contentBase: './dist',
-        // hot: true,
-        // host: 'localhost',
-        // port: 8000,
-        // historyApiFallback:{
-        //     disableDotRule: true
-        // },
-        // overlay: true,
-        // inline: true,
-        // stats:"errors-only",
-        // proxy:{
-        //     '/api/':{
-        //         changeOrigin:true,
-        //         target:'http://localhost:8000',
-        //         pathRewrite: {
-        //             '^/api/':'/'
-        //         }
-        //     }
-        // },
     },
 };
 
